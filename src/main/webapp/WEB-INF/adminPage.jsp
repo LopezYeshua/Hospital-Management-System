@@ -26,7 +26,7 @@ pageEncoding="UTF-8"%>
             <tbody>
                 <c:forEach var="doctor" items="${doctors}">
                     <tr>
-                        <td><a href="/admin/${doctor.id}/show">${doctor.firstName} ${doctor.lastName}</a></td>
+                        <td><a href="/admin/${doctor.id}/showUser">${doctor.firstName} ${doctor.lastName}</a></td>
                         <td>
                             <form action="/admin/${doctor.id}/delete" method ="post">
                                 <input type="hidden" name="_method" value="delete">
@@ -49,7 +49,7 @@ pageEncoding="UTF-8"%>
             <tbody>
                 <c:forEach var="admin" items="${admins}">
                     <tr>
-                        <td><a href="/admin/${admin.id}/showAdmin">${admin.firstName} ${admin.lastName}</a></td>
+                        <td><a href="/admin/${admin.id}/showUser">${admin.firstName} ${admin.lastName}</a></td>
                         <td>
                             <c:if test="${admin.id != currentUser.id}">
                                 <form action="/admin/${admin.id}/delete" method ="post">
@@ -73,9 +73,10 @@ pageEncoding="UTF-8"%>
             <tbody>
                 <c:forEach var="patient" items="${patients}">
                     <tr>
-                        <td><a href="/admin/${patient.id}/showPatient">${patient.firstName} ${patient.lastName}</a></td>
+                        <td><a href="/admin/${patient.id}/showUser">${patient.firstName} ${patient.lastName}</a></td>
                         <td>
                             <form action="/admin/${patient.id}/delete" method ="post">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <input type="hidden" name="_method" value="delete">
                                 <input type="submit" value="DELETE">
                             </form>

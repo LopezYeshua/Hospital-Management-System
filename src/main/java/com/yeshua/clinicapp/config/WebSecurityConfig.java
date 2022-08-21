@@ -24,9 +24,10 @@ public class WebSecurityConfig {
 		http.
 			authorizeRequests()
 				.antMatchers("/css/**", "/js/**", "/webjars/**", "/registration").permitAll()
-				.antMatchers("/patient/**").access("hasRole('PATIENT')")
-				.antMatchers("/doctor/**").access("hasRole('DOCTOR')")
+				.antMatchers("/patient/**").access("hasAnyRole('PATIENT', 'ADMIN')")
+				.antMatchers("/doctor/**").access("hasAnyRole('DOCTOR', 'ADMIN')")
 				.antMatchers("/admin/**").access("hasRole('ADMIN')")
+				.antMatchers("/admin/**/delete").access("hasRole('ADMIN')")
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()

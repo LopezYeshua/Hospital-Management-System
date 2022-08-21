@@ -3,6 +3,7 @@ package com.yeshua.clinicapp.models;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -38,7 +40,15 @@ public class User {
     @Column(updatable=false)
     private Date createdAt;
     private Date updatedAt;
-    @ManyToMany(fetch = FetchType.EAGER)
+    
+    @OneToOne(mappedBy = "user")
+    private Doctor doctor;
+    
+    @OneToOne(mappedBy = "user")
+    private Patient patient;
+    
+    
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
         name = "roles_users", 
         joinColumns = @JoinColumn(name = "user_id"), 
@@ -116,4 +126,20 @@ public class User {
     protected void onUpdate(){
         this.updatedAt = new Date();
     }
+
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
+
+	public Patient getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
 }
