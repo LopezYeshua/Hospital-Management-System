@@ -15,10 +15,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-// TODO:
-// Add verifications and messages
 
 @Entity
 @Table(name = "patients")
@@ -26,23 +26,36 @@ public class Patient {
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-	@Size(min=3)
+	@NotNull
     private Date birthday;
+    
+    @NotNull
+	@Size(min = 3)
     private String gender;
+    
+    @NotNull
+	@Size(min = 5)
     private String insurance;
+    
+    @NotNull
+	@Min(value=11)
     private Long phoneNumber;
+    @NotNull
+	@Size(min=3)
     private String emergencyContact;
+    @NotNull
+	@Min(value=11)
     private Long emergencyPhoneNumber;
     
     @Column(updatable=false)
     private Date createdAt;
     private Date updatedAt;
     
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
     
-    @OneToMany(mappedBy = "patient")
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.REMOVE)
     List<Appointment> appointments;
    
 	public Patient() {

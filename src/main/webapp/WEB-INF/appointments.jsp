@@ -13,6 +13,28 @@ pageEncoding="UTF-8"%>
     <title>Hospital Management System</title>
 </head>
 <body>
-    ${patient.firstName}
+    <div class="container">
+        <form:form method="POST" action="/admin/${patient.id}/appointments" modelAttribute="appointment">
+            <form:input type="hidden" path="patient" value="${patient.patient.id}"/>
+            <p>
+                <form:label path="doctor">Choose Doctor</form:label>
+                <form:select path="doctor">
+                    <c:forEach var="doctor" items="${doctors}">
+                        <option value="${doctor.doctor.id}">${doctor.firstName}</option>
+                    </c:forEach>
+                </form:select>
+            </p>
+            <p>
+                <form:label class="form-label" path="startDate">Date of appointment</form:label>
+                <form:input class="form-control" type="date" id="startDate" path="startDate"/>
+            </p>
+            <p>
+                <form:label class="form-label" path="endDate">Estimated end time</form:label>
+                <form:input class="form-control" type="date" id="endDate" path="endDate"/>
+            </p>
+            <input type="submit" value="Submit"/>
+        </form:form>
+    </div>
+    
 </body>
 </html>

@@ -12,7 +12,10 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <title>Hospital Management System</title>
 </head>
-<body>
+<body class="bg-dark text-light">
+    <nav class="navbar px-4">
+        <h1><a href="/">HMS</a></h1>
+    </nav>
     ${user.firstName}
     <a href="/admin/${user.id}/edit">Edit Role</a>
 </body>

@@ -2,6 +2,7 @@ package com.yeshua.clinicapp.models;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,15 +17,16 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "appointments")
 public class Appointment {
+	
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "doctor_id")
 	private Doctor doctor;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "patient_id")
 	private Patient patient;
 	
