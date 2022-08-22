@@ -50,7 +50,7 @@ public class UserController {
         User user = userService.findByEmail(email);
         if (user.getRoles().get(0).getName().contains("ROLE_ADMIN")) return "redirect:/admin";
         if (user.getRoles().get(0).getName().contains("ROLE_DOCTOR")) return "redirect:/doctor";
-        return "redirect:/patient";
+        else return "redirect:/patient";
     }
     
     @RequestMapping("/login")

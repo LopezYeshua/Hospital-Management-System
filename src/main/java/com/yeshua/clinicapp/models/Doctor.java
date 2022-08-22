@@ -15,7 +15,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 //TODO:
 //Add verifications and messages
@@ -29,7 +32,9 @@ public class Doctor {
     private Long id;
 	@Size(min=3)
     private String specialty;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
     private Date hireDate;
+    @Min(value=3000)
     private Long salary;
     
     @Column(updatable=false)

@@ -40,6 +40,7 @@ public class UserDetailsServiceImplementation implements UserDetailsService {
             GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role.getName());
             authorities.add(grantedAuthority);
         }
+        
         return authorities;
     }
 }

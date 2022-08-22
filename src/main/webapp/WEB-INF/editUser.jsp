@@ -18,16 +18,55 @@ pageEncoding="UTF-8"%>
         <h3>Edit ${user.firstName}</h3>
         <form:form method="POST" action="/admin/${user.id}/edit" modelAttribute="user">
             <input type="hidden" name="_method" value="put">
+            <p>
+                <form:label class="form-label" path="firstName">First Name</form:label>
+                <form:input class="form-control" type="text" id="firstName" path="firstName"/>
+            </p>
+            <p>
+                <form:label class="form-label" path="lastName">Last Name</form:label>
+                <form:input class="form-control" type="text" id="lastName" path="lastName"/>
+            </p>
+            <input type="submit" value="Submit"/>
+        </form:form>
+    </div>
+
+    <c:choose>
+    
+    <c:when test="${user.roles.get(0).name.equals('ROLE_DOCTOR') && user.doctor == null}">
+
+        <div class="container">
+            <h3>Finish setup</h3>
+            <form:form method="POST" action="/admin/${user.id}/addDoctor" modelAttribute="doctor">
+                <form:input type="hidden" path="user" value="${user.id}"/>
                 <p>
-                    <form:label class="form-label" path="firstName">First Name</form:label>
-                    <form:input class="form-control" type="text" id="firstName" path="firstName"/>
+                    <form:label class="form-label" path="specialty">Specialty</form:label>
+                    <form:input class="form-control" type="text" id="specialty" path="specialty"/>
                 </p>
                 <p>
-                    <form:label class="form-label" path="lastName">Last Name</form:label>
-                    <form:input class="form-control" type="text" id="lastName" path="lastName"/>
+                    <form:label class="form-label" path="salary">Salary</form:label>
+                    <form:input class="form-control" type="number" id="salary" path="salary"/>
+                </p>
+                <p>
+                    <form:label class="form-label" path="hireDate">Hire Date</form:label>
+                    <form:input class="form-control" type="Date" id="hireDate" path="hireDate"/>
                 </p>
                 <input type="submit" value="Submit"/>
             </form:form>
-    </div>
+        </div>
+
+    </c:when>
+
+    <c:when test="${user.roles.get(0).name.equals('ROLE_PATIENT')}">
+        <div>
+            Hello ${user.firstName}
+        </div>
+    </c:when>
+    <c:otherwise>
+        <div>
+            <p>Goodbye</p>
+        </div>
+    </c:otherwise>
+
+    </c:choose>
 </body>
 </html>

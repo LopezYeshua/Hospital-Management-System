@@ -12,14 +12,7 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <title>Hospital Management System</title>
 </head>
-<body class="bg-dark text-light">
-    <div class="container w-25 border rounded-2 mt-4 p-4 pt-0">
-        <h1>Welcome <c:out value="${currentUser.firstName}"></c:out></h1>
-
-        <form id="logoutForm" method="POST" action="/logout">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            <input type="submit" value="Logout!" />
-        </form>
-    </div>
+<body>
+    ${patient.firstName}
 </body>
 </html>
