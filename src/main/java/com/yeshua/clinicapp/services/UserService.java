@@ -1,5 +1,7 @@
 package com.yeshua.clinicapp.services;
+
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -30,14 +32,21 @@ public class UserService {
 	}
     
 	public List<User> allDoctors() {
+//		System.out.println("****************test 2 passed");
 		ArrayList<User> allUsers = new ArrayList<User>();
 		allUsers.addAll(userRepository.findAll());
+//		System.out.println(allUsers.size());
+//		System.out.println("************** test 3 passed");
 		ArrayList<User> allDoctors = new ArrayList<User>();
 		for (User oneUser: allUsers) {
+//			System.out.println(oneUser.getRoles().get(0).getName());
 			if (oneUser.getRoles().get(0).getName().contains("ROLE_DOCTOR")) {
+//				System.out.println(oneUser.getRoles().get(0).getName());
 				allDoctors.add(oneUser);
+//				System.out.println("Doctor passed into list");
 			}
 		}
+//		System.out.println(allDoctors.size());
 		return allDoctors;
 	}
 	
@@ -100,4 +109,5 @@ public class UserService {
     public void deleteUser(Long id) {
     	userRepository.deleteById(id);
     }
+    
 }

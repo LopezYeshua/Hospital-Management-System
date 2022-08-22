@@ -48,7 +48,7 @@ public class User {
     private Patient patient;
     
     
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "roles_users", 
         joinColumns = @JoinColumn(name = "user_id"), 

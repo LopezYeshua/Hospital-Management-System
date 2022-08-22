@@ -29,6 +29,7 @@ pageEncoding="UTF-8"%>
                         <td><a href="/admin/${doctor.id}/showUser">${doctor.firstName} ${doctor.lastName}</a></td>
                         <td>
                             <form action="/admin/${doctor.id}/delete" method ="post">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <input type="hidden" name="_method" value="delete">
                                 <input type="submit" value="TERMINATE">
                             </form>
@@ -53,6 +54,7 @@ pageEncoding="UTF-8"%>
                         <td>
                             <c:if test="${admin.id != currentUser.id}">
                                 <form action="/admin/${admin.id}/delete" method ="post">
+                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                     <input type="hidden" name="_method" value="delete">
                                     <input type="submit" value="TERMINATE">
                                 </form>
@@ -74,7 +76,9 @@ pageEncoding="UTF-8"%>
                 <c:forEach var="patient" items="${patients}">
                     <tr>
                         <td><a href="/admin/${patient.id}/showUser">${patient.firstName} ${patient.lastName}</a></td>
-                        <td>
+                        <td class="d-flex gap-3">
+                            <a href="/admin/${patient.id}/appointments">Make Appointment</a>
+                            <p>|</p>
                             <form action="/admin/${patient.id}/delete" method ="post">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <input type="hidden" name="_method" value="delete">
