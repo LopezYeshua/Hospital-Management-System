@@ -27,7 +27,9 @@ import com.yeshua.clinicapp.models.Appointment;
 import com.yeshua.clinicapp.models.Doctor;
 import com.yeshua.clinicapp.models.Patient;
 import com.yeshua.clinicapp.models.User;
+import com.yeshua.clinicapp.services.AppointmentServices;
 import com.yeshua.clinicapp.services.DoctorServices;
+import com.yeshua.clinicapp.services.PatientServices;
 import com.yeshua.clinicapp.services.UserService;
 
 @Controller
@@ -35,11 +37,18 @@ import com.yeshua.clinicapp.services.UserService;
 public class AdminController {
 	
 	@Autowired
-	UserService userService;
+	private UserService userService;
 	
 	@Autowired
-	DoctorServices doctorService;
+	private DoctorServices doctorService;
 	
+	@Autowired
+	private PatientServices patientService;
+	
+	@Autowired
+	private AppointmentServices appointementService;
+	
+//	Formats all dates passed into controller
 	@InitBinder
 	public void initBinder(WebDataBinder webDataBinder) {
 	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -47,6 +56,7 @@ public class AdminController {
 	    webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 	}
 	
+//	Admin Home Page
 	@GetMapping("")
     public String adminPage(Principal principal, Model model,
     		@ModelAttribute("doctors") ArrayList<User> doctors,
@@ -60,6 +70,7 @@ public class AdminController {
         return "adminPage.jsp";
     }
 	
+//	Admin appointment controllers
 	@RequestMapping("/{id}/appointments")
 	@PreAuthorize("hasRole('ADMIN')")
 	public String newAppointment(
@@ -67,8 +78,33 @@ public class AdminController {
 			@PathVariable("id") Long id,
 			Model model) {
 		model.addAttribute("patient", userService.findUser(id));
+		ArrayList<User> allDoctors = new ArrayList<User>();
+		allDoctors.addAll(userService.allDoctors());
+		model.addAttribute("doctors", allDoctors);
 		return "appointments.jsp";
 	}
+	
+	@PostMapping("/{id}/appointments")
+	@PreAuthorize("hasRole('ADMIN')")
+	public String createAppointment(@Valid @ModelAttribute("appointment") Appointment appointment, BindingResult result,
+			@PathVariable("id") Long id) {
+		if (result.hasErrors()) {
+			System.out.println(result.getAllErrors());
+			return "appointment.jsp";
+		}
+		appointementService.addAppointment(appointment);
+		return "redirect:/";
+	}
+	
+	@GetMapping("/{id}/showAppointments")
+	@PreAuthorize("hasRole('ADMIN')")
+	public String showAppointments(@PathVariable("id") Long id,
+			Model model) {
+		model.addAttribute("user", userService.findUser(id));
+		return "showAppointments.jsp";
+	}
+	
+//	End of admin appointments
 	
 	@RequestMapping("/{id}/showUser")
 	@PreAuthorize("hasRole('ADMIN')")
@@ -101,7 +137,21 @@ public class AdminController {
 		}
 		System.out.println("success");
 		doctorService.addDoctor(doctor);
-		return "redirect:/admin/"+ id + "/showUser";
+		return "redirect:/admin/"+ id + "/edit";
+	}
+	
+	@PostMapping("/{id}/addPatient")
+	@PreAuthorize("hasRole('ADMIN')")
+	public String createPatient(
+			@PathVariable("id") Long id,
+			@ModelAttribute("user") User user,
+			@Valid @ModelAttribute("patient") Patient patient, BindingResult result) {
+		if (result.hasErrors()) {
+			return "editUser.jsp";
+		}
+		System.out.println("success");
+		patientService.addPatient(patient);
+		return "redirect:/admin/"+ id + "/edit";
 	}
 	
 	@PutMapping("/{id}/edit")

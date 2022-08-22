@@ -12,6 +12,9 @@ pageEncoding="UTF-8"%>
     <title>Hospital Management System</title>
 </head>
 <body class="bg-dark text-light">
+    <nav class="navbar px-4">
+        <h1><a href="/">HMS</a></h1>
+    </nav>
     <div class="container w-25 border rounded-2 mt-4 p-4 pt-0">
         <h1>Welcome to the admin page <c:out value="${currentUser.firstName}"></c:out></h1>
 
@@ -27,7 +30,9 @@ pageEncoding="UTF-8"%>
                 <c:forEach var="doctor" items="${doctors}">
                     <tr>
                         <td><a href="/admin/${doctor.id}/showUser">${doctor.firstName} ${doctor.lastName}</a></td>
-                        <td>
+                        <td class="d-flex gap-3">
+                            <a href="/admin/${doctor.id}/showAppointments">Show appointments</a>
+                            <p>|</p>
                             <form action="/admin/${doctor.id}/delete" method ="post">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <input type="hidden" name="_method" value="delete">
