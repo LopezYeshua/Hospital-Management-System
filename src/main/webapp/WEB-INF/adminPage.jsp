@@ -34,9 +34,18 @@ pageEncoding="UTF-8"%>
                                 <td>
                                     <p>${user.firstName} ${user.lastName}</p>
                                 </td>
-                                <td><a href="/${user.id}/">edit role</a></td>
+                                <td><a href="admin/${user.id}/edit">edit role</a></td>
                             </tr>
                         </c:when>
+                        <c:when test="${user.roles.get(0).name.equals('ROLE_PATIENT') && user.patient == null}">
+                            <tr>
+                                <td>
+                                    <p>${user.firstName} ${user.lastName}</p>
+                                </td>
+                                <td><a href="admin/${user.id}/edit">edit role</a></td>
+                            </tr>
+                        </c:when>
+
                     </c:choose>
                 </c:forEach>
             </tbody>
@@ -57,7 +66,7 @@ pageEncoding="UTF-8"%>
                         <td class="d-flex gap-3">
                             <a href="/admin/${doctor.user.id}/showAppointments">Show appointments</a>
                             <p>|</p>
-                            <form action="/admin/${doctor.id}/delete" method ="post">
+                            <form action="/admin/${doctor.user.id}/delete" method ="post">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <input type="hidden" name="_method" value="delete">
                                 <input type="submit" value="TERMINATE">
@@ -108,7 +117,7 @@ pageEncoding="UTF-8"%>
                         <td class="d-flex gap-3">
                             <a href="/admin/${patient.user.id}/appointments">Make Appointment</a>
                             <p>|</p>
-                            <form action="/admin/${patient.id}/delete" method ="post">
+                            <form action="/admin/${patient.user.id}/delete" method ="post">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                 <input type="hidden" name="_method" value="delete">
                                 <input type="submit" value="DELETE">

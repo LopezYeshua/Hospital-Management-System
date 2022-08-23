@@ -22,7 +22,7 @@ pageEncoding="UTF-8"%>
             <form:label path="doctor">Choose Doctor</form:label>
             <form:select path="doctor">
                 <c:forEach var="doctor" items="${doctors}">
-                    <option value="${doctor.id}">${doctor.user.firstName}</option>
+                    <option selected value="${doctor.id}">${doctor.user.firstName}</option>
                 </c:forEach>
             </form:select>
         </p>
@@ -31,8 +31,12 @@ pageEncoding="UTF-8"%>
             <form:input class="form-control" type="date" id="startDate" path="startDate"/>
         </p>
         <p>
-            <form:label class="form-label" path="endDate">Estimated end time</form:label>
-            <form:input class="form-control" type="time" id="endDate" path="endDate"/>
+            <form:label class="form-label" path="startTime">Date of appointment</form:label>
+            <form:input class="form-control" type="time" id="startTime" path="startTime"/>
+        </p>
+        <p>
+            <form:label class="form-label" path="endTime">Estimated end time</form:label>
+            <form:input class="form-control" type="time" id="endTime" path="endTime"/>
         </p>
         <input type="submit" value="Submit"/>
     </form:form>

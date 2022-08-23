@@ -3,6 +3,7 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page isErrorPage="true" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,8 +32,12 @@ pageEncoding="UTF-8"%>
                     <c:forEach var="appointment" items="${user.doctor.appointments}">
                         <tr>
                             <td>${appointment.patient.user.firstName}</td>
-                            <td>${appointment.startDate}</td>
                             <td>
+                                <fmt:formatDate type="date" value="${appointment.startDate}"/> at
+                                <fmt:formatDate type="time" dateStyle="short" value="${appointment.startTime}"/> -
+                                <fmt:formatDate type="time" dateStyle="short" value="${appointment.endTime}"/>
+                            </td>
+                            <td class="d-flex gap-3">
                                 <a href="/admin/${appointment.id}/editAppointment">Edit</a>
                                 <p>|</p>
                                 <form action="/admin/${appointment.id}/deleteAppointment" method ="post">

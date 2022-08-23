@@ -41,7 +41,7 @@ public class User {
     private Date createdAt;
     private Date updatedAt;
     
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
     private Doctor doctor;
     
     @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
