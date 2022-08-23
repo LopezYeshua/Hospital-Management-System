@@ -19,6 +19,30 @@ pageEncoding="UTF-8"%>
         <h1>Welcome to the admin page <c:out value="${currentUser.firstName}"></c:out></h1>
 
         <table class="table table-dark">
+            <h1>New Users</h1>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Finish setup</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="user" items="${allUsers}">
+                    <c:choose>
+                        <c:when test="${user.roles.get(0).name.equals('ROLE_DOCTOR') && user.doctor == null}">
+                            <tr>
+                                <td>
+                                    <p>${user.firstName} ${user.lastName}</p>
+                                </td>
+                                <td><a href="/${user.id}/">edit role</a></td>
+                            </tr>
+                        </c:when>
+                    </c:choose>
+                </c:forEach>
+            </tbody>
+        </table>
+
+        <table class="table table-dark">
             <h1>Doctors</h1>
             <thead>
                 <tr>
@@ -29,9 +53,9 @@ pageEncoding="UTF-8"%>
             <tbody>
                 <c:forEach var="doctor" items="${doctors}">
                     <tr>
-                        <td><a href="/admin/${doctor.id}/showUser">${doctor.firstName} ${doctor.lastName}</a></td>
+                        <td><a href="/admin/${doctor.user.id}/showUser">${doctor.user.firstName} ${doctor.user.lastName}</a></td>
                         <td class="d-flex gap-3">
-                            <a href="/admin/${doctor.id}/showAppointments">Show appointments</a>
+                            <a href="/admin/${doctor.user.id}/showAppointments">Show appointments</a>
                             <p>|</p>
                             <form action="/admin/${doctor.id}/delete" method ="post">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
@@ -80,9 +104,9 @@ pageEncoding="UTF-8"%>
             <tbody>
                 <c:forEach var="patient" items="${patients}">
                     <tr>
-                        <td><a href="/admin/${patient.id}/showUser">${patient.firstName} ${patient.lastName}</a></td>
+                        <td><a href="/admin/${patient.user.id}/showUser">${patient.user.firstName} ${patient.user.lastName}</a></td>
                         <td class="d-flex gap-3">
-                            <a href="/admin/${patient.id}/appointments">Make Appointment</a>
+                            <a href="/admin/${patient.user.id}/appointments">Make Appointment</a>
                             <p>|</p>
                             <form action="/admin/${patient.id}/delete" method ="post">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>

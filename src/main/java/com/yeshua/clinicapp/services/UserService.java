@@ -25,30 +25,35 @@ public class UserService {
 	@Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
+	
+	public List<User> allUsers() {
+		return userRepository.findAll();
+	}
+	
 	public User findUser(Long id) {
 		Optional<User> optionalUser = userRepository.findById(id);
 		if (optionalUser.isPresent()) return optionalUser.get();
 		return null;
 	}
     
-	public List<User> allDoctors() {
-//		System.out.println("****************test 2 passed");
-		ArrayList<User> allUsers = new ArrayList<User>();
-		allUsers.addAll(userRepository.findAll());
-//		System.out.println(allUsers.size());
-//		System.out.println("************** test 3 passed");
-		ArrayList<User> allDoctors = new ArrayList<User>();
-		for (User oneUser: allUsers) {
-//			System.out.println(oneUser.getRoles().get(0).getName());
-			if (oneUser.getRoles().get(0).getName().contains("ROLE_DOCTOR")) {
-//				System.out.println(oneUser.getRoles().get(0).getName());
-				allDoctors.add(oneUser);
-//				System.out.println("Doctor passed into list");
-			}
-		}
-//		System.out.println(allDoctors.size());
-		return allDoctors;
-	}
+//	public List<User> allDoctors() {
+////		System.out.println("****************test 2 passed");
+//		ArrayList<User> allUsers = new ArrayList<User>();
+//		allUsers.addAll(userRepository.findAll());
+////		System.out.println(allUsers.size());
+////		System.out.println("************** test 3 passed");
+//		ArrayList<User> allDoctors = new ArrayList<User>();
+//		for (User oneUser: allUsers) {
+////			System.out.println(oneUser.getRoles().get(0).getName());
+//			if (oneUser.getRoles().get(0).getName().contains("ROLE_DOCTOR")) {
+////				System.out.println(oneUser.getRoles().get(0).getName());
+//				allDoctors.add(oneUser);
+////				System.out.println("Doctor passed into list");
+//			}
+//		}
+////		System.out.println(allDoctors.size());
+//		return allDoctors;
+//	}
 	
 	public List<User> allAdmins() {
 		ArrayList<User> allUsers = new ArrayList<User>();
@@ -62,17 +67,17 @@ public class UserService {
 		return allAdmins;
 	}
 	
-	public List<User> allPatients() {
-		ArrayList<User> allUsers = new ArrayList<User>();
-		allUsers.addAll(userRepository.findAll());
-		ArrayList<User> allPatients = new ArrayList<User>();
-		for (User oneUser: allUsers) {
-			if (oneUser.getRoles().get(0).getName().contains("ROLE_PATIENT")) {
-				allPatients.add(oneUser);
-			}
-		}
-		return allPatients;
-	}
+//	public List<User> allPatients() {
+//		ArrayList<User> allUsers = new ArrayList<User>();
+//		allUsers.addAll(userRepository.findAll());
+//		ArrayList<User> allPatients = new ArrayList<User>();
+//		for (User oneUser: allUsers) {
+//			if (oneUser.getRoles().get(0).getName().contains("ROLE_PATIENT")) {
+//				allPatients.add(oneUser);
+//			}
+//		}
+//		return allPatients;
+//	}
 	
     // 1
     public void saveUserWithPatientRole(User user) {

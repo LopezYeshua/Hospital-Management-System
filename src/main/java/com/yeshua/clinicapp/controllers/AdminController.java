@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.yeshua.clinicapp.models.Appointment;
 import com.yeshua.clinicapp.models.Doctor;
@@ -59,12 +61,14 @@ public class AdminController {
 //	Admin Home Page
 	@GetMapping("")
     public String adminPage(Principal principal, Model model,
-    		@ModelAttribute("doctors") ArrayList<User> doctors,
+    		@ModelAttribute("doctors") ArrayList<Doctor> doctors,
     		@ModelAttribute("admins") ArrayList<User> admins,
-    		@ModelAttribute("patients") ArrayList<User> patients) {
-		doctors.addAll((ArrayList<User>) userService.allDoctors());
+    		@ModelAttribute("patients") ArrayList<Patient> patients,
+    		@ModelAttribute("allUsers") ArrayList<User> allUsers) {
+		doctors.addAll((ArrayList<Doctor>) doctorService.allDoctors());
 		admins.addAll((ArrayList<User>) userService.allAdmins());
-		patients.addAll((ArrayList<User>) userService.allPatients());
+		patients.addAll((ArrayList<Patient>) patientService.allPatients());
+		allUsers.addAll((ArrayList<User>) userService.allUsers());
         String email = principal.getName();
         model.addAttribute("currentUser", userService.findByEmail(email));
         return "adminPage.jsp";
@@ -78,8 +82,8 @@ public class AdminController {
 			@PathVariable("id") Long id,
 			Model model) {
 		model.addAttribute("patient", userService.findUser(id));
-		ArrayList<User> allDoctors = new ArrayList<User>();
-		allDoctors.addAll(userService.allDoctors());
+		ArrayList<Doctor> allDoctors = new ArrayList<Doctor>();
+		allDoctors.addAll(doctorService.allDoctors());
 		model.addAttribute("doctors", allDoctors);
 		return "appointments.jsp";
 	}
@@ -104,7 +108,38 @@ public class AdminController {
 		return "showAppointments.jsp";
 	}
 	
-//	End of admin appointments
+	@GetMapping("/{id}/editAppointment")
+	public String editAppointment(
+			@PathVariable("id") Long id,
+			Model model) {
+		Appointment appointment = appointementService.findAppointment(id);
+		model.addAttribute("appointment", appointment);
+		List<Doctor> allDoctors = doctorService.allDoctors();
+		model.addAttribute("patient", patientService.findPatient(appointment.getPatient().getId()));
+		model.addAttribute("doctors", allDoctors);
+		return "editAppointment.jsp";
+	}
+	
+	@PutMapping("/{id}/updateAppointment")
+	public String updateAppointment(
+			@RequestParam("doctorId") Long doctorId,
+			@PathVariable("id") Long id,
+			@Valid @ModelAttribute("appointment") Appointment appointment, BindingResult result) {
+		if (result.hasErrors()) return "editAppointment.jsp";
+		appointementService.addAppointment(appointment);
+		return "redirect:/admin/" +  doctorId + "/showAppointments";
+	}
+	
+	@DeleteMapping("/{id}/deleteAppointment")
+	@PreAuthorize("hasRole('ADMIN')")
+	public String deleteAppointment(@PathVariable("id") Long id,
+			@RequestParam("userId") Long userId) {
+		appointementService.deleteAppointment(id);
+		return "redirect:/admin/" + userId + "/showAppointments";
+	}
+
+	
+	//	End of admin appointments
 	
 	@RequestMapping("/{id}/showUser")
 	@PreAuthorize("hasRole('ADMIN')")
@@ -121,7 +156,6 @@ public class AdminController {
 			@ModelAttribute("doctor") Doctor doctor,
 			@ModelAttribute("patient") Patient patient) {
 		model.addAttribute("user", userService.findUser(id));
-		model.addAttribute("doctor", new Doctor());
 		return "editUser.jsp";
 	}
 	

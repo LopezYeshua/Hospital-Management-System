@@ -32,7 +32,9 @@ public class Appointment {
 	
 	private Date startDate;
 	
-	private Date endDate;
+	private Date startTime;
+	
+	private Date endTime;
 	
 	@Column(updatable=false)
     private Date createdAt;
@@ -73,14 +75,6 @@ public class Appointment {
 		this.startDate = startDate;
 	}
 
-	public Date getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(Date endDate) {
-		this.endDate = endDate;
-	}
-
 	public Date getCreatedAt() {
 		return createdAt;
 	}
@@ -105,4 +99,20 @@ public class Appointment {
     protected void onUpdate(){
         this.updatedAt = new Date();
     }
+
+	public Date getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
+
+	public Date getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
 }
