@@ -3,12 +3,14 @@ package com.yeshua.clinicapp.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig {
 	
 	private UserDetailsService userDetailsService;
@@ -24,9 +26,10 @@ public class WebSecurityConfig {
 		http.
 			authorizeRequests()
 				.antMatchers("/css/**", "/js/**", "/webjars/**", "/registration").permitAll()
-				.antMatchers("/patient/**").access("hasRole('PATIENT')")
-				.antMatchers("/doctor/**").access("hasRole('DOCTOR')")
+				.antMatchers("/patient/**").access("hasAnyRole('PATIENT', 'ADMIN')")
+				.antMatchers("/doctor/**").access("hasAnyRole('DOCTOR', 'ADMIN')")
 				.antMatchers("/admin/**").access("hasRole('ADMIN')")
+				.antMatchers("/{id}/delete").access("hasRole('ADMIN')")
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()

@@ -13,13 +13,10 @@ pageEncoding="UTF-8"%>
     <title>Hospital Management System</title>
 </head>
 <body class="bg-dark text-light">
-    <div class="container w-25 border rounded-2 mt-4 p-4 pt-0">
-        <h1>Welcome Page <c:out value="${currentUser.firstName}"></c:out></h1>
-        <form id="logoutForm" method="POST" action="/logout">
-            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            <input type="submit" value="Logout!" />
-        </form>
-        
-    </div>
+    <nav class="navbar px-4">
+        <h1><a href="/">HMS</a></h1>
+    </nav>
+    ${user.firstName}
+    <a href="/admin/${user.id}/edit">Edit Role</a>
 </body>
 </html>

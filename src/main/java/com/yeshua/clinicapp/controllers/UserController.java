@@ -38,12 +38,10 @@ public class UserController {
         if (result.hasErrors()) {
             return "registrationPage.jsp";
         }
-        if (role == 1) {
-        	userService.saveUserWithDoctorRole(user);
-        }
+        if (role == 1) userService.saveUserWithDoctorRole(user);
         if (role == 2) userService.saveUserWithAdminRole(user);
         if (role == 0) userService.saveUserWithPatientRole(user);
-        return "redirect:/admin";
+        return "redirect:/";
     }
     
     @RequestMapping(value = {"/", "/home"})
@@ -51,8 +49,8 @@ public class UserController {
         String email = principal.getName();
         User user = userService.findByEmail(email);
         if (user.getRoles().get(0).getName().contains("ROLE_ADMIN")) return "redirect:/admin";
-        if (user.getRoles().get(0).getName().contains("ROLE_DOCTOR")) return "redirect:/admin";
-        return "patientPage.jsp";
+        if (user.getRoles().get(0).getName().contains("ROLE_DOCTOR")) return "redirect:/doctor";
+        else return "redirect:/patient";
     }
     
     @RequestMapping("/login")
