@@ -33,10 +33,13 @@ pageEncoding="UTF-8"%>
                             <td>${appointment.patient.user.firstName}</td>
                             <td>${appointment.startDate}</td>
                             <td>
+                                <a href="/admin/${appointment.id}/editAppointment">Edit</a>
+                                <p>|</p>
                                 <form action="/admin/${appointment.id}/deleteAppointment" method ="post">
                                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                    <input type="hidden" name="userId" value="${user.id}">
                                     <input type="hidden" name="_method" value="delete">
-                                    <input type="submit" value="TERMINATE">
+                                    <input type="submit" value="CANCEL">
                                 </form>
                             </td>
                         </tr>
@@ -46,6 +49,11 @@ pageEncoding="UTF-8"%>
         </div>
     </c:when>
 
+    <c:otherwise>
+        <div>
+            <h1>Nothing to see here</h1>
+        </div>
+    </c:otherwise>
 
     </c:choose>
 </body>

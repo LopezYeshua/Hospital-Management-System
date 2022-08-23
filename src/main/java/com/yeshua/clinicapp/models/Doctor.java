@@ -20,12 +20,9 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-//TODO:
-//Add verifications and messages
-
 @Entity
 @Table(name="doctors")
-public class Doctor {
+public class Doctor{
 	
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -49,7 +46,7 @@ public class Doctor {
     List<Appointment> appointments;
 
 	public Doctor() {}
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -110,6 +107,7 @@ public class Doctor {
     protected void onCreate(){
         this.createdAt = new Date();
     }
+
     @PreUpdate
     protected void onUpdate(){
         this.updatedAt = new Date();

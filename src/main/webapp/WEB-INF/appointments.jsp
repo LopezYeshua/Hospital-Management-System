@@ -30,7 +30,7 @@ pageEncoding="UTF-8"%>
             </p>
             <p>
                 <form:label class="form-label" path="endDate">Estimated end time</form:label>
-                <form:input class="form-control" type="date" id="endDate" path="endDate"/>
+                <form:input class="form-control" type="time" id="endDate" path="endDate"/>
             </p>
             <input type="submit" value="Submit"/>
         </form:form>
