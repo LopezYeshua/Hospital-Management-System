@@ -42,8 +42,11 @@ public class Doctor{
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
     
-    @OneToMany(mappedBy = "doctor")
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.REMOVE)
     List<Appointment> appointments;
+    
+    @OneToMany(mappedBy="patient", cascade = CascadeType.REMOVE)
+    private List<Prescription> prescriptions;
 
 	public Doctor() {}
 	

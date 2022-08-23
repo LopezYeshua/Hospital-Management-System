@@ -33,7 +33,7 @@ pageEncoding="UTF-8"%>
                     </c:if>
                     <c:forEach var="appointment" items="${currentUser.doctor.appointments}">
                         <tr>
-                            <td>${appointment.patient.user.firstName} ${appointment.patient.user.lastName}</td>
+                            <td><a href="/doctor/${appointment.id}">${appointment.patient.user.firstName} ${appointment.patient.user.lastName}</a></td>
                             <td>
                                 <fmt:formatDate type="date" value="${appointment.startDate}"/> at
                                 <fmt:formatDate type="time" value="${appointment.startTime}"/> -
