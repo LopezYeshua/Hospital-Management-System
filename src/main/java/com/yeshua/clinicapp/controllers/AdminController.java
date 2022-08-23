@@ -1,6 +1,7 @@
 package com.yeshua.clinicapp.controllers;
 
 import java.security.Principal;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,22 +41,29 @@ public class AdminController {
 	
 	@Autowired
 	private UserService userService;
-	
 	@Autowired
 	private DoctorServices doctorService;
-	
 	@Autowired
 	private PatientServices patientService;
-	
 	@Autowired
 	private AppointmentServices appointementService;
 	
-//	Formats all dates passed into controller
+//	Formats all dates and times passed into controller
 	@InitBinder
-	public void initBinder(WebDataBinder webDataBinder) {
-	    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	    dateFormat.setLenient(false);
-	    webDataBinder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+	public void bindingPreparation(WebDataBinder binder) {
+	  DateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+	  CustomDateEditor startDateEditor = new CustomDateEditor(dateFormat1, true);
+	  DateFormat timeFormat1 = new SimpleDateFormat("hh:mm");
+	  CustomDateEditor endTimeEditor = new CustomDateEditor(timeFormat1, true);
+	  DateFormat timeFormat2 = new SimpleDateFormat("hh:mm");
+	  CustomDateEditor startTimeEditor = new CustomDateEditor(timeFormat2, true);
+	  DateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
+	  CustomDateEditor birthdayEditor = new CustomDateEditor(dateFormat2, true);
+	  
+	  binder.registerCustomEditor(Date.class, "startDate", startDateEditor);
+	  binder.registerCustomEditor(Date.class, "endTime", endTimeEditor);
+	  binder.registerCustomEditor(Date.class, "startTime", startTimeEditor);
+	  binder.registerCustomEditor(Date.class, "birthday", birthdayEditor);
 	}
 	
 //	Admin Home Page
@@ -150,7 +158,6 @@ public class AdminController {
 	
 	
 	@GetMapping("/{id}/edit")
-	@PreAuthorize("hasRole('ADMIN')")
 	public String editUser(@PathVariable("id") Long id,
 			Model model,
 			@ModelAttribute("doctor") Doctor doctor,
@@ -175,7 +182,6 @@ public class AdminController {
 	}
 	
 	@PostMapping("/{id}/addPatient")
-	@PreAuthorize("hasRole('ADMIN')")
 	public String createPatient(
 			@PathVariable("id") Long id,
 			@ModelAttribute("user") User user,

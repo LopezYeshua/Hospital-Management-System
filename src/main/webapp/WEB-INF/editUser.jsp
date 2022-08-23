@@ -3,6 +3,8 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page isErrorPage="true" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,7 +70,7 @@ pageEncoding="UTF-8"%>
                 <div class="card-body">
                     <p>Specialty: ${user.doctor.specialty}</p>
                     <p>Salary: ${user.doctor.salary}</p>
-                    <p>Hire Date: ${user.doctor.hireDate}</p>
+                    <p>Hire Date: <fmt:formatDate type="date" value="${user.doctor.hireDate}"/></p>
                 </div>
             </div>
         </div>
@@ -127,9 +129,10 @@ pageEncoding="UTF-8"%>
                 <div class="card-body">
                     <p>Gender: ${user.patient.gender}</p>
                     <p>Insurance: ${user.patient.insurance}</p>
+                    <p>Phone Number: ${user.patient.phoneNumber}</p>
                     <p>Emergency Contact: ${user.patient.emergencyContact}</p>
                     <p>Emergency Contact Phone #: ${user.patient.emergencyPhoneNumber}</p>
-                    <p>Birthday: ${user.patient.birthday}</p>
+                    <p>Birthday: <fmt:formatDate type="date" value="${user.patient.birthday}"/></p>
                 </div>
             </div>
         </div>

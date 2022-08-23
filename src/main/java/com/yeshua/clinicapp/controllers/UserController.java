@@ -41,7 +41,7 @@ public class UserController {
         if (role == 1) userService.saveUserWithDoctorRole(user);
         if (role == 2) userService.saveUserWithAdminRole(user);
         if (role == 0) userService.saveUserWithPatientRole(user);
-        return "redirect:/admin";
+        return "redirect:/";
     }
     
     @RequestMapping(value = {"/", "/home"})
