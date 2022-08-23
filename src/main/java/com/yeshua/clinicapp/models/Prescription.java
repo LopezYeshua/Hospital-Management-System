@@ -14,10 +14,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "appointments")
-public class Appointment {
+@Table(name="prescriptions")
+public class Prescription {
 	
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -31,21 +32,29 @@ public class Appointment {
 	@JoinColumn(name = "patient_id")
 	private Patient patient;
 	
-	@OneToOne(mappedBy="appointment",cascade = CascadeType.DETACH)
-	private Prescription prescription;
+	@OneToOne(cascade = CascadeType.DETACH)
+	@JoinColumn(name="appointment_id", referencedColumnName = "id")
+	private Appointment appointment;
 	
-	private Date startDate;
+	@Size(min=3)
+	private String medication;
 	
-	private Date startTime;
+	@Size(min=3)
+	private String description;
 	
-	private Date endTime;
+	@Size(min=3)
+	private String timesTaken;
+	
+	@Size(min=3)
+	private String daysTaken;
+	
+	private Long isArchived;
 	
 	@Column(updatable=false)
     private Date createdAt;
     private Date updatedAt;
     
-	public Appointment() {
-	}
+	public Prescription() {}
 
 	public Long getId() {
 		return id;
@@ -71,12 +80,28 @@ public class Appointment {
 		this.patient = patient;
 	}
 
-	public Date getStartDate() {
-		return startDate;
+	public String getMedication() {
+		return medication;
 	}
 
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setMedication(String medication) {
+		this.medication = medication;
+	}
+
+	public String getTimesTaken() {
+		return timesTaken;
+	}
+
+	public void setTimesTaken(String timesTaken) {
+		this.timesTaken = timesTaken;
+	}
+
+	public String getDaysTaken() {
+		return daysTaken;
+	}
+
+	public void setDaysTaken(String daysTaken) {
+		this.daysTaken = daysTaken;
 	}
 
 	public Date getCreatedAt() {
@@ -104,27 +129,30 @@ public class Appointment {
         this.updatedAt = new Date();
     }
 
-	public Date getStartTime() {
-		return startTime;
+	public Long getIsArchived() {
+		return isArchived;
 	}
 
-	public void setStartTime(Date startTime) {
-		this.startTime = startTime;
+	public void setIsArchived(Long isArchived) {
+		this.isArchived = isArchived;
 	}
 
-	public Date getEndTime() {
-		return endTime;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setEndTime(Date endTime) {
-		this.endTime = endTime;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public Prescription getPrescription() {
-		return prescription;
+	public Appointment getAppointment() {
+		return appointment;
 	}
 
-	public void setPrescription(Prescription prescription) {
-		this.prescription = prescription;
+	public void setAppointment(Appointment appointment) {
+		this.appointment = appointment;
 	}
+
+
+	
 }

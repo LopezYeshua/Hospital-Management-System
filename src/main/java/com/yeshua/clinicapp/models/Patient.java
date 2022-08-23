@@ -56,7 +56,10 @@ public class Patient {
     private User user;
     
     @OneToMany(mappedBy = "patient", cascade = CascadeType.REMOVE)
-    List<Appointment> appointments;
+    private List<Appointment> appointments;
+    
+    @OneToMany(mappedBy="patient", cascade = CascadeType.REMOVE)
+    private List<Prescription> prescriptions;
    
 	public Patient() {
 	}
@@ -156,5 +159,13 @@ public class Patient {
 
 	public void setAppointments(List<Appointment> appointments) {
 		this.appointments = appointments;
+	}
+
+	public List<Prescription> getPrescriptions() {
+		return prescriptions;
+	}
+
+	public void setPrescriptions(List<Prescription> prescriptions) {
+		this.prescriptions = prescriptions;
 	}
 }
