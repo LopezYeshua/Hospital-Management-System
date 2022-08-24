@@ -1,0 +1,13 @@
+:root {
+    --blue: #41a6be;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.custom-box {
+    background-color: var(--blue);
+}

@@ -25,7 +25,7 @@ public class UserController {
 	@Autowired
 	UserValidator userValidator;
 	
-	@RequestMapping("")
+	@RequestMapping("/")
 	public String index() {
 		return "index.jsp";
 	}

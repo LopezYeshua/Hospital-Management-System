@@ -9,7 +9,5 @@ body {
 	background-image: url(/images/doctor_pic.jpg);
 	height: 100px;
 	width: 200px;
-	background-size: cover;
-	background-blend-mode: color;
+	z-index: 5;
 }
-

@@ -19,10 +19,10 @@ pageEncoding="UTF-8"%>
 
     <div class="container mt-3 text-center">
         <div class="container hero">
-            
+            yo
         </div>
         <div class="row">
-            <div class="col">yo</div>
+            <div class="col"><div class="container"><a href="/about">About</a></div></div>
             <div class="col">yo</div>
             <div class="col">yo</div>
             <div class="col">yo</div>
