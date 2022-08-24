@@ -13,6 +13,9 @@ pageEncoding="UTF-8"%>
     <title>Hospital Management System</title>
 </head>
 <body>
+    <nav class="navbar px-4">
+        <h1><a href="/home">HMS</a></h1>
+    </nav>
     <div class="container">
     <form:form method="POST" action="/admin/${appointment.id}/updateAppointment" modelAttribute="appointment">
         <input type="hidden" name="_method" value="put">

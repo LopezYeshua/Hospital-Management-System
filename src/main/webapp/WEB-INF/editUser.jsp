@@ -17,7 +17,7 @@ pageEncoding="UTF-8"%>
 </head>
 <body class="body">
     <nav class="navbar px-4">
-        <h1><a href="/">HMS</a></h1>
+        <h1><a href="/home">HMS</a></h1>
     </nav>
     <div class="container">
         <h3>Edit ${user.firstName}</h3>

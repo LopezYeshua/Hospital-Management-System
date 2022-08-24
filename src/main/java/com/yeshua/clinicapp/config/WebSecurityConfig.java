@@ -25,7 +25,7 @@ public class WebSecurityConfig {
 		
 		http.
 			authorizeRequests()
-				.antMatchers("/css/**", "/js/**", "/webjars/**", "/registration").permitAll()
+				.antMatchers("/css/**", "/js/**", "/webjars/**", "/registration", "/").permitAll()
 				.antMatchers("/patient/**").access("hasAnyRole('PATIENT', 'ADMIN')")
 				.antMatchers("/doctor/**").access("hasAnyRole('DOCTOR', 'ADMIN')")
 				.antMatchers("/admin/**").access("hasRole('ADMIN')")

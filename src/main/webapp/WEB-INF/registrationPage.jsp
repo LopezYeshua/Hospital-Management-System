@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>Registration Page</title>
 </head>
 
@@ -21,7 +21,9 @@
     <path d="M2212 -68.9745V18L720 29.5C1074 -70.4755 1864 -76.9726 2212 -68.9745Z" fill="#57a5cc"
         fill-opacity="0.8"></path>
 </svg>
-<h1><a href="/">HMS</a></h1>
+<nav class="navbar px-4">
+    <h1><a href="/">HMS</a></h1>
+</nav>
 <div class="container w-25 border border-1 rounded-2 mt-5 p-5 pt-5">
     <h1>Register</h1>
         <p>
