@@ -1,5 +1,7 @@
 :root {
-    --blue: #41a6be;
+	--blue1: #00548c;
+	--blue2: #4695bf;
+	--blue3: #57a5cc;
 }
 
 * {
@@ -9,5 +11,5 @@
 }
 
 .custom-box {
-    background-color: var(--blue);
+    background-color: var(--blue3);
 }

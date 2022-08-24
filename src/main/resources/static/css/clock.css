@@ -1,0 +1,58 @@
+:root {
+	--blue1: #00548c;
+	--blue2: #4695bf;
+	--blue3: #57a5cc;
+}
+
+.clock {
+    height: 15vh;
+    color: black;
+    font-size: 5vh;
+    font-family: sans-serif;
+    line-height: 15.4vh;
+    display: flex;
+    position: relative;
+    /*background: green;*/
+    overflow: hidden;
+}
+
+.clock::before,
+.clock::after {
+    content: '';
+    width: 7ch;
+    height: 3vh;
+    background: linear-gradient(to top, transparent, white);
+    position: absolute;
+    z-index: 2;
+}
+
+.clock::after {
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent, white);
+}
+
+.clock>div {
+    display: flex;
+}
+
+.tick {
+    line-height: 15vh;
+}
+
+.tick-hidden {
+    opacity: 0;
+}
+
+.move {
+    animation: move linear 1s infinite;
+}
+
+@keyframes move {
+    from {
+        transform: translateY(0vh);
+    }
+
+    to {
+        transform: translateY(-15vh);
+    }
+}
