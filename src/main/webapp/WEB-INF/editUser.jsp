@@ -95,7 +95,7 @@ pageEncoding="UTF-8"%>
             <form:form method="POST" action="/admin/${user.id}/addPatient" modelAttribute="patient">
                 <form:input type="hidden" path="user" value="${user.id}"/>
                 <p>
-                    <labelm class="form-label" path="gender">Gender</label>
+                    <label class="form-label" path="gender">Gender</label>
                     <form:select class="form-control" path="gender">
                         <option value= selected>------SELECT------</option>
                         <option value="boy">Boy</option>
