@@ -13,6 +13,9 @@
 </head>
 
 <body class="bg-dark text-light">
+    <nav class="navbar px-4">
+        <h1><a href="/">HMS</a></h1>
+    </nav>
     <div class="container w-25 border rounded-2 mt-4 p-4 pt-0">
         <c:if test="${logoutMessage != null}">
             <c:out value="${logoutMessage}"></c:out>

@@ -13,11 +13,11 @@ pageEncoding="UTF-8"%>
 </head>
 <body class="bg-dark text-light">
     <nav class="navbar px-4">
-        <h1><a href="/">HMS</a></h1>
+        <h1><a href="/home">HMS</a></h1>
     </nav>
     <div class="container w-25 border rounded-2 mt-4 p-4 pt-0">
         <h1>Welcome to the admin page <c:out value="${currentUser.firstName}"></c:out></h1>
-
+<!-- New Users Table -->
         <table class="table table-dark">
             <h1>New Users</h1>
             <thead>
@@ -50,7 +50,7 @@ pageEncoding="UTF-8"%>
                 </c:forEach>
             </tbody>
         </table>
-
+<!-- All Doctors Table -->
         <table class="table table-dark">
             <h1>Doctors</h1>
             <thead>
@@ -76,7 +76,7 @@ pageEncoding="UTF-8"%>
                 </c:forEach>
             </tbody>
         </table>
-
+<!-- All Admins Table -->
         <table class="table table-dark">
             <h1>Admins</h1>
             <thead>
@@ -102,6 +102,7 @@ pageEncoding="UTF-8"%>
                 </c:forEach>
             </tbody>
         </table>
+<!-- All Patients Table -->
         <table class="table table-dark">
             <h1>Patients</h1>
             <thead>

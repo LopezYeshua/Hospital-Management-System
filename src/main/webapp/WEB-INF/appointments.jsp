@@ -13,6 +13,9 @@ pageEncoding="UTF-8"%>
     <title>Hospital Management System</title>
 </head>
 <body>
+    <nav class="navbar px-4">
+        <h1><a href="/home">HMS</a></h1>
+    </nav>
     <div class="container">
         <form:form method="POST" action="/admin/${patient.id}/appointments" modelAttribute="appointment">
             <form:input type="hidden" path="patient" value="${patient.patient.id}"/>
@@ -20,7 +23,7 @@ pageEncoding="UTF-8"%>
                 <form:label path="doctor">Choose Doctor</form:label>
                 <form:select path="doctor">
                     <c:forEach var="doctor" items="${doctors}">
-                        <option value="${doctor.id}">${doctor.user.firstName}</option>
+                        <option value="${doctor.id}">${doctor.user.firstName} - ${doctor.specialty}</option>
                     </c:forEach>
                 </form:select>
             </p>
@@ -38,6 +41,5 @@ pageEncoding="UTF-8"%>
             <input type="submit" value="Submit"/>
         </form:form>
     </div>
-    
 </body>
 </html>

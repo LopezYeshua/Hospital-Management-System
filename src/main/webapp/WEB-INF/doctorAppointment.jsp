@@ -13,6 +13,9 @@ pageEncoding="UTF-8"%>
     <title>Hospital Management System</title>
 </head>
 <body class="bg-dark text-light">
+    <nav class="navbar px-4">
+        <h1><a href="/home">HMS</a></h1>
+    </nav>
     <div class="container w-50 mt-5 border border-light py-3 rounded-3">
         <form:form action="/doctor/${doctor.id}/prescription" method="post" modelAttribute="prescription">
             <form:input type="hidden" path="doctor" value="${doctor.id}"/>

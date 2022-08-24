@@ -14,6 +14,9 @@ pageEncoding="UTF-8"%>
     <title>Hospital Management System</title>
 </head>
 <body class="bg-dark text-light">
+    <nav class="navbar px-4">
+        <h1><a href="/home">HMS</a></h1>
+    </nav>
     <div class="container w-25 border rounded-2 mt-4 p-4 pt-0">
         <h1>Welcome <c:out value="${currentUser.firstName}"></c:out></h1>
         <div>

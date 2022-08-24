@@ -14,6 +14,9 @@ pageEncoding="UTF-8"%>
     <title>Hospital Management System</title>
 </head>
 <body>
+    <nav class="navbar px-4">
+        <h1><a href="/home">HMS</a></h1>
+    </nav>
 
     <c:choose>
 
