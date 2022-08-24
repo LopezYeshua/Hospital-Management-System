@@ -24,6 +24,11 @@ public class UserController {
 	UserService userService;
 	@Autowired
 	UserValidator userValidator;
+	
+	@RequestMapping("")
+	public String index() {
+		return "index.jsp";
+	}
     
     @RequestMapping("/registration")
     public String registerForm(@Valid @ModelAttribute("user") User user) {
@@ -41,10 +46,10 @@ public class UserController {
         if (role == 1) userService.saveUserWithDoctorRole(user);
         if (role == 2) userService.saveUserWithAdminRole(user);
         if (role == 0) userService.saveUserWithPatientRole(user);
-        return "redirect:/";
+        return "redirect:/home";
     }
     
-    @RequestMapping(value = {"/", "/home"})
+    @RequestMapping(value = {"/home"})
     public String home(Principal principal, Model model) {
         String email = principal.getName();
         User user = userService.findByEmail(email);

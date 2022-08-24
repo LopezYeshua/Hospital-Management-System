@@ -1,7 +1,15 @@
+
 body {
 	background-image: url("https://i.imgur.com/k1IC0Sm.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 }
 
+.hero {
+	background-image: url(/images/doctor_pic.jpg);
+	height: 100px;
+	width: 200px;
+	background-size: cover;
+	background-blend-mode: color;
+}
 

@@ -10,13 +10,23 @@ pageEncoding="UTF-8"%>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css">
     <title>Hospital Management System</title>
 </head>
-<body class="bg-dark text-light">
-    <nav class="navbar px-4">
-        <h1><a href="/home">HMS</a></h1>
-    </nav>
-    ${user.firstName}
-    <a href="/admin/${user.id}/edit">Edit Role</a>
+<body>
+    <a href="/login">Patient Portal</a>
+    <a href="/registration">Careers</a>
+
+    <div class="container mt-3 text-center">
+        <div class="container hero">
+            
+        </div>
+        <div class="row">
+            <div class="col">yo</div>
+            <div class="col">yo</div>
+            <div class="col">yo</div>
+            <div class="col">yo</div>
+        </div>
+    </div>
 </body>
 </html>
