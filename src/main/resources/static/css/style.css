@@ -9,11 +9,11 @@
 }
 
 
-body {
+/* body {
 	background-image: url("https://i.imgur.com/k1IC0Sm.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
-}
+} */
 
 .hero {
 	background-image: url("/images/drpic.jpg");
@@ -26,7 +26,7 @@ body {
 .about {
 	width: 100px;
 	height: 100px;
-	background-color: white;
+	background-color: var(--blue1);
 	margin: 20px;
 }
 
@@ -40,7 +40,7 @@ body {
 .contact {
 	width: 100px;
 	height: 100px;
-	background-color: white;
+	background-color: var(--blue1);
 	margin: 20px;
 }
 
@@ -49,4 +49,15 @@ body {
 	height: 100px;
 	background-color: #57a5cc;
 	margin: 20px;
+}
+
+.test {
+	font-size: 30px;
+}
+
+
+@media only screen and (max-width: 600px) {
+	.test {
+		font-size: 7vw;
+	}
 }
