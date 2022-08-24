@@ -4,6 +4,10 @@
 	--blue3: #57a5cc;
 }
 
+.title-positioned {
+	position: absolute;
+}
+
 
 body {
 	background-image: url("https://i.imgur.com/k1IC0Sm.jpg");

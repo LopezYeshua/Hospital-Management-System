@@ -4,33 +4,77 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/css/userPages.css">
-        <title>Hospital Management System</title>
-    </head>
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/userPages.css">
+    <link rel="stylesheet" href="/css/clock.css">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js" defer></script> -->
+    <script src="/js/clock.js" defer></script>
+    <title>Hospital Management System</title>
+</head>
+<body>
+    <svg width="1440" height="55" viewBox="0 0 1440 55" preserveAspectRatio="xMidYMin slice"
+    style="width: 100%; padding-bottom: 3em; overflow: visible" fill="none"
+    xmlns="http://www.w3.org/2000/svg">
+    <path d="M-16 55V-71.2907L1440 -81C1078.17 21.2026 512 55 -16 55Z" fill="#00548C"></path>
+    <path d="M2212 -68.9745V18L720 29.5C1074 -70.4755 1864 -76.9726 2212 -68.9745Z" fill="#57a5cc"
+        fill-opacity="0.8"></path>
+    </svg>
+    <div class="containter">
+        <nav class="navbar px-4 position-absolute top-0 start-0">
+            <h1><a class="text-light" href="/home">NoHo Medical Arts</a></h1>
+        </nav>
     </div>
-    <nav class="navbar px-4">
-        <h1><a href="/home">HMS</a></h1>
-    </nav>
-    <div class="container">
-        <div class="container custom-box shadow-lg px-3 rounded-3">
-            <h1>Welcome to the admin page <c:out value="${currentUser.firstName}"></c:out></h1>
-            <div class="container d-flex">
-                <form id="logoutForm" method="POST" action="/logout">
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                    <input class="btn btn-light" type="submit" value="Logout!" />
-                </form>
-                <a class="btn btn-light" href="/registration">Register new employee/patient</a>
+    <div class="container mt-3">
+        <div class="row px-3 py-2">
+            <div class="col">
+                <h1>Welcome to the admin page <c:out value="${currentUser.firstName}"></c:out></h1>
+                <div class="container d-flex gap-3">
+                    <form id="logoutForm" method="POST" action="/logout">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                        <input class="btn btn-outline-dark" type="submit" value="Logout!" />
+                    </form>
+                    <a class="btn btn-outline-dark" href="/registration">Register new employee/patient</a>
+                </div>
+            </div>
+            <!-- Clock -->
+            <div class="col-2">
+                <div class="clock">
+                    <div class="hours">
+                        <div class="first">
+                            <div class="number">0</div>
+                        </div>
+                        <div class="second">
+                            <div class="number">0</div>
+                        </div>
+                    </div>
+                    <div class="tick">:</div>
+                    <div class="minutes">
+                        <div class="first">
+                        <div class="number">0</div>
+                    </div>
+                        <div class="second">
+                        <div class="number">0</div>
+                        </div>
+                    </div>
+                    <div class="tick">:</div>
+                    <div class="seconds">
+                        <div class="first">
+                            <div class="number">0</div>
+                        </div>
+                        <div class="second infinite">
+                            <div class="number">0</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row mt-3">
+        <div class="row mt-3 gap-3">
             <!-- New Users Table -->
-            <div class="col custom-box rounded-3">
+            <div class="col shadow-lg w-50 border border-dark rounded-3 mt-4 p-4 pt-0">
                 <table class="table">
                     <h1>New Users</h1>
                     <thead>
@@ -65,8 +109,8 @@ pageEncoding="UTF-8"%>
                 </table>
             </div>
             <!-- All Doctors Table -->
-            <div class="col">
-                <table class="table table-dark">
+            <div class="col shadow-lg w-50 border border-dark rounded-3 mt-4 p-4 pt-0">
+                <table class="table">
                     <h1>Doctors</h1>
                     <thead>
                         <tr>
@@ -93,10 +137,10 @@ pageEncoding="UTF-8"%>
                 </table>
             </div>
         </div>
-        <div class="row">
+        <div class="row mt-3 gap-3">
             <!-- All Admins Table -->
-            <div class="col">
-                <table class="table table-dark">
+            <div class="col shadow-lg w-50 border border-dark rounded-3 mt-4 p-4 pt-0">
+                <table class="table">
                     <h1>Admins</h1>
                     <thead>
                         <tr>
@@ -122,9 +166,9 @@ pageEncoding="UTF-8"%>
                     </tbody>
                 </table>
             </div>
-            <div class="col">
+            <div class="col shadow-lg w-50 border border-dark rounded-3 mt-4 p-4 pt-0">
         <!-- All Patients Table -->
-                <table class="table table-dark">
+                <table class="table">
                     <h1>Patients</h1>
                     <thead>
                         <tr>
@@ -151,8 +195,6 @@ pageEncoding="UTF-8"%>
                 </table>
             </div>
         </div>
-    </div>
-    <div class="container w-25 border rounded-2 mt-4 p-4 pt-0">
     </div>
 </body>
 </html>
