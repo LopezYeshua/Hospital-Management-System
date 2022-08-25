@@ -100,9 +100,11 @@ public class UserService {
     }    
     
     // 3
-    public User findByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }
+    public User findUserByEmail(String email) {
+		Optional<User> optionalUser = userRepository.findByEmail(email);
+		if (optionalUser.isPresent()) return optionalUser.get();
+		return null;
+	}
     
     public User updateUser(User user) {
     	User userInDb = userRepository.findById(user.getId()).get();

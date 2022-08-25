@@ -37,7 +37,7 @@ pageEncoding="UTF-8"%>
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         <input class="btn btn-outline-dark" type="submit" value="Logout!" />
                     </form>
-                    <a class="btn btn-outline-dark" href="/registration">Register new employee/patient</a>
+                    <a class="btn btn-outline-dark" href="/admin/registerPatient">Register new employee/patient</a>
                 </div>
             </div>
             <!-- Clock -->
