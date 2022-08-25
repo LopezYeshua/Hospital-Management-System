@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "appointments")
@@ -23,6 +24,7 @@ public class Appointment {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 	
+	@NotNull
 	@ManyToOne(cascade = CascadeType.DETACH)
 	@JoinColumn(name = "doctor_id")
 	private Doctor doctor;
@@ -34,11 +36,15 @@ public class Appointment {
 	@OneToOne(mappedBy="appointment",cascade = CascadeType.DETACH)
 	private Prescription prescription;
 	
+	@NotNull
 	private Date startDate;
 	
+	@NotNull
 	private Date startTime;
 	
 	private Date endTime;
+	
+	private String notes;
 	
 	@Column(updatable=false)
     private Date createdAt;

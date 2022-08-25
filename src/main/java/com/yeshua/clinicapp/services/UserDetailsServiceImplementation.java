@@ -3,6 +3,7 @@ package com.yeshua.clinicapp.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,15 +17,13 @@ import com.yeshua.clinicapp.repositories.UserRepository;
 
 @Service
 public class UserDetailsServiceImplementation implements UserDetailsService {
-    private UserRepository userRepository;
-    
-    public UserDetailsServiceImplementation(UserRepository userRepository){
-        this.userRepository = userRepository;
-    }
+
+	@Autowired
+	UserService userService;
     // 1
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email);
+        User user = userService.findUserByEmail(email);
         
         if(user == null) {
             throw new UsernameNotFoundException("User not found");
