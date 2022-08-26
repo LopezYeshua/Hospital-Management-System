@@ -1,6 +1,7 @@
 package com.yeshua.clinicapp.controllers;
 
 import java.security.Principal;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -17,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yeshua.clinicapp.models.Doctor;
 import com.yeshua.clinicapp.models.Patient;
+import com.yeshua.clinicapp.models.Prescription;
 import com.yeshua.clinicapp.models.User;
 import com.yeshua.clinicapp.services.PatientServices;
+import com.yeshua.clinicapp.services.PrescriptionServices;
 import com.yeshua.clinicapp.services.UserService;
 
 @Controller
@@ -30,6 +33,8 @@ public class PatientController {
 	
 	@Autowired
 	PatientServices patientService;
+	@Autowired
+	private PrescriptionServices prescriptionService;
 
 	@RequestMapping("")
     public String patientPage(
@@ -38,7 +43,8 @@ public class PatientController {
         String email = principal.getName();
         User currentUser = userService.findUserByEmail(email);
         model.addAttribute("currentUser", currentUser);
-        
+        List<Prescription> allPrescriptions = prescriptionService.allPrescriptions(); 
+        model.addAttribute("allPrescriptions", allPrescriptions);
         return "patientPage.jsp";
     }
 	

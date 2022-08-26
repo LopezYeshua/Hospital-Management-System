@@ -13,10 +13,17 @@ pageEncoding="UTF-8"%>
     <title>Hospital Management System</title>
 </head>
 <body>
-    <nav class="navbar px-4">
-        <h1><a href="/home">HMS</a></h1>
+    <svg width="1440" height="132" viewBox="0 0 1440 55" preserveAspectRatio="xMidYMin slice"
+        style="width: 100%; padding-bottom: 3em; overflow: visible" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
+        <path d="M-16 55V-71.2907L1440 -81C1078.17 21.2026 512 55 -16 55Z" fill="#00548C"></path>
+        <path d="M2212 -68.9745V18L720 29.5C1074 -70.4755 1864 -76.9726 2212 -68.9745Z" fill="#57a5cc"
+            fill-opacity="0.8"></path>
+    </svg>
+    <nav class="navbar px-4 position-absolute top-0 start-0">
+        <h1><a class="text-light title link" href="/home">NoHo Medical Arts</a></h1>
     </nav>
-    <div class="container">
+    <div class="container w-25  py-3 rounded border border-dark">
         <form:form method="POST" action="/admin/${patient.id}/appointments" modelAttribute="appointment">
             <form:input type="hidden" path="patient" value="${patient.patient.id}"/>
             <p>

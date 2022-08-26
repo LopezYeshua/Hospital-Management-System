@@ -18,24 +18,22 @@ pageEncoding="UTF-8"%>
     <script src="/js/clock.js" defer></script>
     <title>Hospital Management System</title>
 </head>
-<body class="bg-dark text-light">
-    <svg width="1440" height="150" viewBox="100 0 1440 55" preserveAspectRatio="xMidYMin slice"
+<body>
+    <svg width="1440" height="152" viewBox="0 0 1440 55" preserveAspectRatio="xMidYMin slice"
     style="width: 100%; padding-bottom: 3em; overflow: visible" fill="none"
     xmlns="http://www.w3.org/2000/svg">
     <path d="M-16 55V-71.2907L1440 -81C1078.17 21.2026 512 55 -16 55Z" fill="#00548C"></path>
     <path d="M2212 -68.9745V18L720 29.5C1074 -70.4755 1864 -76.9726 2212 -68.9745Z" fill="#57a5cc"
         fill-opacity="0.8"></path>
     </svg>
-    <div class="containter">
-        <nav class="navbar title-positioned px-4">
-            <h1><a class="text-light" href="/home">NoHo Medical Arts</a></h1>
-        </nav>
-    </div>
+    <nav class="navbar px-4 position-absolute top-0 start-0">
+        <h1><a class="text-light title link" href="/home">NoHo Medical Arts</a></h1>
+    </nav>
     
-    <div class="container w-25 border rounded-2 mt-4 p-4 pt-0">
+    <div class="container w-25 border border-dark rounded-2 mt-4 p-4 pt-0">
         <h1>Welcome <c:out value="${currentUser.firstName}"></c:out></h1>
         <div>
-            <table class="table table-dark">
+            <table class="table">
                 <h3>Your upcoming appointments</h3>
                 <thead>
                     <tr>
@@ -44,14 +42,14 @@ pageEncoding="UTF-8"%>
                     </tr>
                 </thead>
                 <tbody>
-                    <c:if test="${appointment == null}">
+                    <c:if test="${currentUser.patient.appointments.size() == 0}">
                         <tr>
                             <td>Nothing to see here</td>
                         </tr>
                     </c:if>
                     <c:forEach var="appointment" items="${currentUser.patient.appointments}">
                         <tr>
-                            <td>${appointment.doctor.user.firstName} ${appointment.doctor.user.lastName}</td>
+                            <td><strong>${appointment.doctor.user.firstName} ${appointment.doctor.user.lastName}</strong></td>
                             <td>
                                 <fmt:formatDate type="date" value="${appointment.startDate}"/> at
                                 <fmt:formatDate type="time" value="${appointment.startTime}"/> -
@@ -61,10 +59,33 @@ pageEncoding="UTF-8"%>
                     </c:forEach>
                 </tbody>
             </table>
+            <table class="table">
+                <h3>Patients History</h3>
+                <thead>
+                    <tr>
+                        <th>Doctor</th>
+                        <th>Symptoms</th>
+                        <th>Diagnosis</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach var="prescription" items="${allPrescriptions}">
+                        <c:if test="${prescription.patient.user.id == currentUser.id}">
+                            <tr>
+                                <td><strong>${prescription.doctor.user.firstName} ${prescription.doctor.user.lastName}</strong></td>
+                                <td>${prescription.symptoms}</td>
+                                <td>${prescription.diagnosis}</td>
+                                <td><fmt:formatDate type="date" value="${prescription.createdAt}"/></td>
+                            </tr>
+                        </c:if>
+                    </c:forEach>
+                </tbody>
+            </table>
         </div>
         <form id="logoutForm" method="POST" action="/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-            <input type="submit" value="Logout!" />
+            <input class="btn btn-outline-dark" type="submit" value="Logout!" />
         </form>
     </div>
 </body>

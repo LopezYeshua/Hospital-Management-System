@@ -10,10 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -32,21 +32,13 @@ public class Prescription {
 	@JoinColumn(name = "patient_id")
 	private Patient patient;
 	
-	@OneToOne(cascade = CascadeType.DETACH)
-	@JoinColumn(name="appointment_id", referencedColumnName = "id")
-	private Appointment appointment;
+	@Size(min=3)
+	@NotNull
+	private String symptoms;
 	
 	@Size(min=3)
-	private String medication;
-	
-	@Size(min=3)
-	private String description;
-	
-	@Size(min=3)
-	private String timesTaken;
-	
-	@Size(min=3)
-	private String daysTaken;
+	@NotNull
+	private String diagnosis;
 	
 	private Long isArchived;
 	
@@ -80,30 +72,6 @@ public class Prescription {
 		this.patient = patient;
 	}
 
-	public String getMedication() {
-		return medication;
-	}
-
-	public void setMedication(String medication) {
-		this.medication = medication;
-	}
-
-	public String getTimesTaken() {
-		return timesTaken;
-	}
-
-	public void setTimesTaken(String timesTaken) {
-		this.timesTaken = timesTaken;
-	}
-
-	public String getDaysTaken() {
-		return daysTaken;
-	}
-
-	public void setDaysTaken(String daysTaken) {
-		this.daysTaken = daysTaken;
-	}
-
 	public Date getCreatedAt() {
 		return createdAt;
 	}
@@ -124,6 +92,7 @@ public class Prescription {
     protected void onCreate(){
         this.createdAt = new Date();
     }
+	
     @PreUpdate
     protected void onUpdate(){
         this.updatedAt = new Date();
@@ -137,20 +106,20 @@ public class Prescription {
 		this.isArchived = isArchived;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getSymptoms() {
+		return symptoms;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setSymptoms(String symptoms) {
+		this.symptoms = symptoms;
 	}
 
-	public Appointment getAppointment() {
-		return appointment;
+	public String getDiagnosis() {
+		return diagnosis;
 	}
 
-	public void setAppointment(Appointment appointment) {
-		this.appointment = appointment;
+	public void setDiagnosis(String diagnosis) {
+		this.diagnosis = diagnosis;
 	}
 
 

@@ -114,7 +114,7 @@ public class AdminController {
 			return "appointment.jsp";
 		}
 		appointementService.addAppointment(appointment);
-		return "redirect:/";
+		return "redirect:/home";
 	}
 	
 	@GetMapping("/{id}/showAppointments")
