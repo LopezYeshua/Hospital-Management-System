@@ -8,8 +8,18 @@
 	position: absolute;
 }
 
+img {
+	border-radius: 2%;
+}
+
 .hero-responsive {
 	width: 1000px;
+}
+
+.in-hero {
+	position: relative;
+	bottom:25vh;
+	right: 18vw;
 }
 
 .about {
@@ -83,6 +93,7 @@
 
 
 @media only screen and (max-width: 600px) {
+	
 	.title {
 		font-size: 20px;
 	}

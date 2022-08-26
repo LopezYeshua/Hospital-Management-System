@@ -35,9 +35,8 @@
 
     <div class="container mt-3 text-center">
         <div class="row">
-            <img class=" container hero-responsive" src="/images/drpic.jpg" alt="no">
-            <!-- <div class="container hero">
-            </div> -->
+            <img class="container hero-responsive" src="/images/drpic.jpg" alt="no">
+            <h3 class="in-hero text-light">Where your health comes first</h3>
         </div>
         <div class="row mt-4">
             <div class="col">
@@ -47,16 +46,19 @@
                     </div>
                 </a>
             </div>
-            <div class="col doctors">
-                <div class="container"><a href="">Doctors</a></div>
+            <div class="col">
+                <a href="#">
+                    <div class="doctors">
+                        <p class="link">Doctors</p>
+                    </div>
+                </a>
             </div>
-            <div class="col contact">
-                <div class="container"><a href="">Contact Us</a></div>
-            </div>
-            <div class="col covid">
-                <div class="container">
-                    <a href="">COVID</a>
-                </div>
+            <div class="col">
+                <a href="#">
+                    <div class="contact">
+                        <p class="link">Contact Us</p>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
