@@ -78,9 +78,18 @@ public class AdminController {
 		patients.addAll((ArrayList<Patient>) patientService.allPatients());
 		allUsers.addAll((ArrayList<User>) userService.allUsers());
         String email = principal.getName();
-        model.addAttribute("currentUser", userService.findByEmail(email));
+        model.addAttribute("currentUser", userService.findUserByEmail(email));
         return "adminPage.jsp";
     }
+	
+	@RequestMapping("/registerPatient")
+	public String registerPatient(
+			@ModelAttribute("user") User user,
+			Model model) {
+		int isAdmin = 1;
+		model.addAttribute("isAdmin", isAdmin);
+		return "registrationPage.jsp";
+	}
 	
 //	Admin appointment controllers
 	@RequestMapping("/{id}/appointments")

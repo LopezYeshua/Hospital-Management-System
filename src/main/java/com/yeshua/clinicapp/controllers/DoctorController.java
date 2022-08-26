@@ -44,7 +44,7 @@ public class DoctorController {
 	@RequestMapping("")
     public String doctorPage(Principal principal, Model model) {
         String email = principal.getName();
-        model.addAttribute("currentUser", userService.findByEmail(email));
+        model.addAttribute("currentUser", userService.findUserByEmail(email));
         return "doctorPage.jsp";
     }
 	
@@ -56,7 +56,7 @@ public class DoctorController {
 			Principal principal) {
 		String email = principal.getName();
 		
-		Doctor doctor = doctorService.findDoctor(userService.findByEmail(email).getDoctor().getId());
+		Doctor doctor = doctorService.findDoctor(userService.findUserByEmail(email).getDoctor().getId());
         model.addAttribute("doctor", doctor);
         model.addAttribute("appointmentId", appointmentId);
 		model.addAttribute("patient", patientService.findPatient(appointmentService.findAppointment(appointmentId).getPatient().getId()));

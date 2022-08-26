@@ -36,7 +36,7 @@ public class PatientController {
     		Principal principal,
     		Model model) {
         String email = principal.getName();
-        User currentUser = userService.findByEmail(email);
+        User currentUser = userService.findUserByEmail(email);
         model.addAttribute("currentUser", currentUser);
         
         return "patientPage.jsp";
