@@ -9,27 +9,25 @@ pageEncoding="UTF-8"%>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/userPages.css">
     <link rel="stylesheet" href="/css/clock.css">
-    <!-- <script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js" defer></script> -->
     <script src="/js/clock.js" defer></script>
     <title>Hospital Management System</title>
 </head>
 <body>
-    <svg width="1440" height="55" viewBox="0 0 1440 55" preserveAspectRatio="xMidYMin slice"
+    <svg width="1440" height="152" viewBox="0 0 1440 55" preserveAspectRatio="xMidYMin slice"
     style="width: 100%; padding-bottom: 3em; overflow: visible" fill="none"
     xmlns="http://www.w3.org/2000/svg">
     <path d="M-16 55V-71.2907L1440 -81C1078.17 21.2026 512 55 -16 55Z" fill="#00548C"></path>
     <path d="M2212 -68.9745V18L720 29.5C1074 -70.4755 1864 -76.9726 2212 -68.9745Z" fill="#57a5cc"
         fill-opacity="0.8"></path>
     </svg>
-    <div class="containter">
-        <nav class="navbar px-4 position-absolute top-0 start-0">
-            <h1><a class="text-light" href="/home">NoHo Medical Arts</a></h1>
-        </nav>
-    </div>
-    <div class="container mt-3">
-        <div class="row px-3 py-2">
+    <nav class="navbar px-4 position-absolute top-0 start-0">
+        <h1><a class="text-light title link" href="/home">NoHo Medical Arts</a></h1>
+    </nav>
+    <div class="container">
+        <div class="row px-3 py-1">
             <div class="col">
                 <h1>Welcome to the admin page <c:out value="${currentUser.firstName}"></c:out></h1>
                 <div class="container d-flex gap-3">
@@ -37,7 +35,7 @@ pageEncoding="UTF-8"%>
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                         <input class="btn btn-outline-dark" type="submit" value="Logout!" />
                     </form>
-                    <a class="btn btn-outline-dark" href="/admin/registerPatient">Register new employee/patient</a>
+                    <a class="btn btn-outline-dark" href="/admin/registerPatient">Register new patient</a>
                 </div>
             </div>
             <!-- Clock -->
@@ -121,14 +119,14 @@ pageEncoding="UTF-8"%>
                     <tbody>
                         <c:forEach var="doctor" items="${doctors}">
                             <tr>
-                                <td><a href="/admin/${doctor.user.id}/showUser">${doctor.user.firstName} ${doctor.user.lastName}</a></td>
+                                <td><a href="/admin/${doctor.user.id}/edit">${doctor.user.firstName} ${doctor.user.lastName}</a></td>
                                 <td class="d-flex gap-3">
                                     <a href="/admin/${doctor.user.id}/showAppointments">Show appointments</a>
                                     <p>|</p>
                                     <form action="/admin/${doctor.user.id}/delete" method ="post">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <input type="hidden" name="_method" value="delete">
-                                        <input type="submit" value="TERMINATE">
+                                        <input class="btn btn-outline-dark" type="submit" value="TERMINATE">
                                     </form>
                                 </td>
                             </tr>
@@ -151,13 +149,13 @@ pageEncoding="UTF-8"%>
                     <tbody>
                         <c:forEach var="admin" items="${admins}">
                             <tr>
-                                <td><a href="/admin/${admin.id}/showUser">${admin.firstName} ${admin.lastName}</a></td>
+                                <td><a href="/admin/${admin.id}/edit">${admin.firstName} ${admin.lastName}</a></td>
                                 <td>
                                     <c:if test="${admin.id != currentUser.id}">
                                         <form action="/admin/${admin.id}/delete" method ="post">
                                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                             <input type="hidden" name="_method" value="delete">
-                                            <input type="submit" value="TERMINATE">
+                                            <input class="btn btn-outline-dark" type="submit" value="TERMINATE">
                                         </form>
                                     </c:if>
                                 </td>
@@ -179,14 +177,14 @@ pageEncoding="UTF-8"%>
                     <tbody>
                         <c:forEach var="patient" items="${patients}">
                             <tr>
-                                <td><a href="/admin/${patient.user.id}/showUser">${patient.user.firstName} ${patient.user.lastName}</a></td>
+                                <td><a href="/admin/${patient.user.id}/edit">${patient.user.firstName} ${patient.user.lastName}</a></td>
                                 <td class="d-flex gap-3">
                                     <a href="/admin/${patient.user.id}/appointments">Make Appointment</a>
                                     <p>|</p>
                                     <form action="/admin/${patient.user.id}/delete" method ="post">
                                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                                         <input type="hidden" name="_method" value="delete">
-                                        <input type="submit" value="DELETE">
+                                        <input class="btn btn-outline-dark" type="submit" value="DELETE">
                                     </form>
                                 </td>
                             </tr>

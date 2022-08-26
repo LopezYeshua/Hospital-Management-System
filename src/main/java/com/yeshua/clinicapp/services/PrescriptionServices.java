@@ -23,6 +23,10 @@ public class PrescriptionServices {
 		return prescriptionRepository.save(p);
 	}
 	
+	public void deletePrescription(Long id) {
+    	prescriptionRepository.deleteById(id);
+    }
+	
 	public Prescription findPrescription(Long id) {
 		Optional<Prescription> optionalPrescription = prescriptionRepository.findById(id);
 		if (optionalPrescription.isPresent()) return optionalPrescription.get();

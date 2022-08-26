@@ -1,20 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page isErrorPage="true" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/smallerScreen.css">
-    <title>Hospital Management System</title>
+    <title>Our Doctors</title>
 </head>
-
 <body>
     <svg width="1440" height="132" viewBox="-10 -10 1440 55" preserveAspectRatio="xMidYMin slice"
         style="width: 100%; padding-bottom: 3em; overflow: visible" fill="none"
@@ -32,36 +31,14 @@
             <a class="text-light px-2 link links" href="/registration">Careers</a>
         </div>
     </div>
-
-    <div class="container mt-3 text-center">
-        <div class="row">
-            <img class="container hero-responsive" src="/images/drpic.jpg" alt="no">
-            <h3 class="in-hero text-light">Where your health comes first</h3>
-        </div>
-        <div class="row container mt-4">
-            <div class="col">
-                <a href="#">
-                    <div class="about">
-                        <p class="link">About</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col">
-                <a href="/doctors">
-                    <div class="doctors">
-                        <p class="link">Doctors</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col">
-                <a href="#">
-                    <div class="contact">
-                        <p class="link">Contact Us</p>
-                    </div>
-                </a>
-            </div>
-        </div>
+    <div class="container">
+        <c:forEach var="doctor" items="${allDoctors}">
+            <article class="border border-dark mb-3 rounded-3 px-3 py-1">
+                <p><strong>${doctor.user.firstName} ${doctor.user.lastName}</strong></p>
+                <p>Member Since: <fmt:formatDate type="date" value="${doctor.hireDate}"/></p>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea dolorum repudiandae eum. Voluptates molestias optio magnam maiores error quisquam quasi quos minima molestiae, modi iste dolor est totam pariatur eum?</p>
+            </article>
+        </c:forEach>
     </div>
 </body>
-
 </html>

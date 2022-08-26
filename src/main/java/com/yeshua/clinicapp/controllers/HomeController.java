@@ -1,6 +1,7 @@
 package com.yeshua.clinicapp.controllers;
 
 import java.security.Principal;
+import java.util.ArrayList;
 
 import javax.validation.Valid;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.yeshua.clinicapp.models.Appointment;
+import com.yeshua.clinicapp.models.Doctor;
 import com.yeshua.clinicapp.models.User;
 import com.yeshua.clinicapp.services.DoctorServices;
 import com.yeshua.clinicapp.services.UserService;
@@ -71,6 +73,13 @@ public class HomeController {
         if (user.getRoles().get(0).getName().contains("ROLE_ADMIN")) return "redirect:/admin";
         if (user.getRoles().get(0).getName().contains("ROLE_DOCTOR")) return "redirect:/doctor";
         else return "redirect:/patient";
+    }
+    
+    @RequestMapping("/doctors")
+    public String allDoctors(@ModelAttribute("allDoctors") ArrayList<Doctor> allDoctors, Model model) {
+    	model.addAttribute("allDoctors", allDoctors);
+    	allDoctors.addAll(doctorService.allDoctors());
+    	return "ourDoctors.jsp";
     }
     
     @RequestMapping("/login")

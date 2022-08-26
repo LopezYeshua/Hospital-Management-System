@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <svg width="1440" height="55" viewBox="0 0 1440 55" preserveAspectRatio="xMidYMin slice"
+    <svg width="1440" height="152" viewBox="0 0 1440 55" preserveAspectRatio="xMidYMin slice"
         style="width: 100%; padding-bottom: 3em; overflow: visible" fill="none"
         xmlns="http://www.w3.org/2000/svg">
         <path d="M-16 55V-71.2907L1440 -81C1078.17 21.2026 512 55 -16 55Z" fill="#00548C"></path>
@@ -22,7 +22,7 @@
             fill-opacity="0.8"></path>
     </svg>
     <nav class="navbar px-4 position-absolute top-0 start-0">
-        <h1><a href="/">NoHo Medical Arts</a></h1>
+        <h1><a class="text-light title link" href="/">NoHo Medical Arts</a></h1>
     </nav>
     <div class="container width-var border rounded-2 mt-4 p-4 pt-0">
         <c:if test="${logoutMessage != null}">
@@ -42,9 +42,8 @@
                 <input class="form-control" type="password" id="password" name="password" />
             </p>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-            <input type="submit" value="Login!" />
+            <input class="btn btn-outline-dark" type="submit" value="Login!" />
         </form>
-        <a href="/registration/${isEmployee}">Register</a>
     </div>
 </body>
 

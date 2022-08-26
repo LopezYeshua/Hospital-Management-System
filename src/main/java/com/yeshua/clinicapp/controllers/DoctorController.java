@@ -70,7 +70,8 @@ public class DoctorController {
 		if (result.hasErrors()) {
 			return "doctorAppointment.jsp";
 		}
+		appointmentService.deleteAppointment(id);
 		prescriptionService.addPrescription(prescription);
-		return "redirect:/";
+		return "redirect:/home";
 	}
 }

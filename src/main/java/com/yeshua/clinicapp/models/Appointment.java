@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -33,9 +32,6 @@ public class Appointment {
 	@JoinColumn(name = "patient_id")
 	private Patient patient;
 	
-	@OneToOne(mappedBy="appointment",cascade = CascadeType.DETACH)
-	private Prescription prescription;
-	
 	@NotNull
 	private Date startDate;
 	
@@ -43,8 +39,6 @@ public class Appointment {
 	private Date startTime;
 	
 	private Date endTime;
-	
-	private String notes;
 	
 	@Column(updatable=false)
     private Date createdAt;
@@ -124,13 +118,5 @@ public class Appointment {
 
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
-	}
-
-	public Prescription getPrescription() {
-		return prescription;
-	}
-
-	public void setPrescription(Prescription prescription) {
-		this.prescription = prescription;
 	}
 }
