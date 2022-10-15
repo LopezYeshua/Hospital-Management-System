@@ -24,7 +24,7 @@ pageEncoding="UTF-8"%>
     </svg>
     <div class="containter">
         <nav class="navbar px-4 position-absolute top-0 start-0">
-            <h1><a class="text-light title link" href="/">NoHo Medical Arts</a></h1>
+            <h1><a class="text-light title link" href="/">HeartBeat Hospital</a></h1>
         </nav>
         <div class="div px-3 position-absolute top-0 end-0 mt-3">
             <a class="text-light link links" href="/login">Patient Portal</a>

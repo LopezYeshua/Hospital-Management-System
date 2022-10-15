@@ -10,7 +10,7 @@ pageEncoding="UTF-8"%>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
-    <title>Hospital Management System</title>
+    <title>HeartBeat Hospital</title>
 </head>
 <body class="bg-dark text-light">
     <svg width="1440" height="55" viewBox="0 0 1440 55" preserveAspectRatio="xMidYMin slice"
@@ -22,7 +22,7 @@ pageEncoding="UTF-8"%>
     </svg>
     <div class="containter">
         <nav class="navbar px-4 position-absolute top-0 start-0">
-            <h1><a class="text-light" href="/home">NoHo Medical Arts</a></h1>
+            <h1><a class="text-light" href="/home">HeartBeat Hospital</a></h1>
         </nav>
     </div>
     ${user.firstName}

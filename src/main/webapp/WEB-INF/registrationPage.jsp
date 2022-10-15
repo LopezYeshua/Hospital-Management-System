@@ -22,7 +22,7 @@
             fill-opacity="0.8"></path>
     </svg>
     <nav class="navbar px-4 position-absolute top-0 start-0">
-        <h1><a class="text-light title link" href="/home">NoHo Medical Arts</a></h1>
+        <h1><a class="text-light title link" href="/home">HeartBeat Hospital</a></h1>
     </nav>
     <div class="container width-var border border-1 rounded-2 mt-5 p-5 pt-5">
         <c:choose>

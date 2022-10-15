@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/smallerScreen.css">
-    <title>Hospital Management System</title>
+    <title>HeartBeat Hospital</title>
 </head>
 
 <body>
@@ -22,7 +22,7 @@
             fill-opacity="0.8"></path>
     </svg>
     <nav class="navbar px-4 position-absolute top-0 start-0">
-        <h1><a class="text-light title link" href="/">NoHo Medical Arts</a></h1>
+        <h1><a class="text-light title link" href="/">HeartBeat Hospital</a></h1>
     </nav>
     <div class="container width-var border rounded-2 mt-4 p-4 pt-0">
         <c:if test="${logoutMessage != null}">

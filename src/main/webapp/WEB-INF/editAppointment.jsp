@@ -11,7 +11,7 @@ pageEncoding="UTF-8"%>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/style.css">
-    <title>Hospital Management System</title>
+    <title>HeartBeat Hospital</title>
 </head>
 <body>
     <svg width="1440" height="132" viewBox="0 0 1440 55" preserveAspectRatio="xMidYMin slice"
@@ -22,7 +22,7 @@ pageEncoding="UTF-8"%>
             fill-opacity="0.8"></path>
     </svg>
     <nav class="navbar px-4 position-absolute top-0 start-0">
-        <h1><a class="text-light title link" href="/home">NoHo Medical Arts</a></h1>
+        <h1><a class="text-light title link" href="/home">HeartBeat Hospital</a></h1>
     </nav>
     <div class="container">
     <form:form method="POST" action="/admin/${appointment.id}/updateAppointment" modelAttribute="appointment">

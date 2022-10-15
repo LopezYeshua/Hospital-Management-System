@@ -22,7 +22,7 @@ pageEncoding="UTF-8"%>
             fill-opacity="0.8"></path>
     </svg>
     <nav class="navbar px-4 position-absolute top-0 start-0">
-        <h1><a class="text-light title link" href="/home">NoHo Medical Arts</a></h1>
+        <h1><a class="text-light title link" href="/home">HeartBeat Hospital</a></h1>
     </nav>
     <div class="container w-50 mt-5 border border-dark py-3 rounded-3">
         <form:form action="/doctor/${appointmentId}/prescription" method="post" modelAttribute="prescription">

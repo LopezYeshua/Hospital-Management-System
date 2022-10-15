@@ -16,7 +16,7 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="/css/clock.css">
     <!-- <script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js" defer></script> -->
     <script src="/js/clock.js" defer></script>
-    <title>Hospital Management System</title>
+    <title>HeartBeat Hospital</title>
 </head>
 <body>
     <svg width="1440" height="152" viewBox="0 0 1440 55" preserveAspectRatio="xMidYMin slice"
@@ -27,7 +27,7 @@ pageEncoding="UTF-8"%>
         fill-opacity="0.8"></path>
     </svg>
     <nav class="navbar px-4 position-absolute top-0 start-0">
-        <h1><a class="text-light title link" href="/home">NoHo Medical Arts</a></h1>
+        <h1><a class="text-light title link" href="/home">HeartBeat Hospital</a></h1>
     </nav>
     
     <div class="container w-25 border border-dark rounded-2 mt-4 p-4 pt-0">

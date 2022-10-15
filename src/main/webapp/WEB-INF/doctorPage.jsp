@@ -14,7 +14,7 @@ pageEncoding="UTF-8"%>
     <link rel="stylesheet" href="/css/userPages.css">
     <link rel="stylesheet" href="/css/clock.css">
     <script src="/js/clock.js" defer></script>
-    <title>Hospital Management System</title>
+    <title>HeartBeat Hospital</title>
 </head>
 <body>
     <svg width="1440" height="55" viewBox="0 0 1440 55" preserveAspectRatio="xMidYMin slice"
@@ -26,12 +26,12 @@ pageEncoding="UTF-8"%>
     </svg>
     <div class="containter">
         <nav class="navbar px-4 position-absolute top-0 start-0">
-            <h1><a class="text-light" href="/home">NoHo Medical Arts</a></h1>
+            <h1><a class="text-light" href="/home">HeartBeat Hospital</a></h1>
         </nav>
     </div>
     <div class="row px-5 py-2 mt-5">
         <div class="col">
-            <h1>Welcome Doctor <c:out value="${currentUser.firstName}"></c:out></h1>
+            <h1>Welcome Doctor <c:out value="${currentUser.lastName}"></c:out></h1>
             <form id="logoutForm" method="POST" action="/logout">
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                 <input class="btn btn-outline-dark" type="submit" value="Logout!" />
